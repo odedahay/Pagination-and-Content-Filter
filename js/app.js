@@ -23,12 +23,11 @@ $(function() {
   $parentHeader.append($studentSearch);
   $studentSearch.append("<input placeholder='Search for students...' id='inputSearch' type='text'><button id='searchButton'>Search</button>");
 
-
   // initilize the function
   paginationFunction(studentListItems);
 
   // bind search function to typing in search bar
-  $('#searchButton, #inputSearch').on('click keyup' ,function(){
+  $("#searchButton, #inputSearch").on("click keyup" ,function(){
 
       // stored search value from input field
       var searchStudent = $("#inputSearch").val().toLowerCase();
@@ -42,8 +41,8 @@ $(function() {
       studentDetails.each(function() {
 
           // get the student name and email
-          var studentName = ($(this).children('h3').html()).toLowerCase();
-          var studentEmail = ($(this).children('span.email').html()).toLowerCase();
+          var studentName = ($(this).children("h3").html()).toLowerCase();
+          var studentEmail = ($(this).children("span.email").html()).toLowerCase();
 
           // use regular expression to compare the student name & email from search field input
           var regularExpression = new RegExp(searchStudent);
@@ -54,7 +53,6 @@ $(function() {
           if (searchName !== null || searchEmail !== null) {
               $(this).parent().show();
           }
-
       });
 
       studentListItems = $(".student-list li:visible");
@@ -65,15 +63,13 @@ $(function() {
 
       }else {
           // If no matches are found, show the message there is no student in the list.
-          var noName = $('#inputSearch').val();
-          var $studentDetails = $('<div class="student-details"></div>');
-          $(".student-list").append($studentDetails)
+          var noName = $("#inputSearch").val();
+          var $studentDetails = $("<div class='student-details'></div>");
+          $(".student-list").append($studentDetails);
           $studentDetails.append("<li class='student-item notFound'><h3>Sorry, there is no \""+noName+"\" in the student list. <button class='reset'>Reset </button></h3></li>");
 
-          $('.reset').click(function() {location.reload();});
-
+          $(".reset").click(function() {location.reload();});
       }
-
   });
 
   // add page number links for each page and start off going to page 1
@@ -102,7 +98,7 @@ $(function() {
       paginationLink(currentPage, studentListItems);
 
       // Enable pagination Button when it click
-      $('.pagination li').on('click', 'a', function(event) {
+      $(".pagination li").on("click", "a", function(event) {
          // Prevent to on top while clicking
          event.preventDefault();
          var currentActive = $(this).text();
@@ -123,9 +119,9 @@ $(function() {
     studentListItems.hide();
     studentsToShow.fadeIn();
 
-    $('.pagination li').on('click', 'a', function() {
-        $('.pagination a.active').removeClass('active');
-        $(this).addClass('active');
+    $(".pagination li").on("click", "a", function() {
+        $(".pagination a.active").removeClass("active");
+        $(this).addClass("active");
     });
   }
 
